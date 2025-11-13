@@ -7,7 +7,10 @@
 <body>
     <button id="btn">Type name:</button>
     <p id="msg"></p>
-    <label for="name">Name (4 to 8 characters):</label>
+
+    <button id="btn">Clicker:</button>
+    <p id="msg"></p>
+    
 
     <input
     type="text"
@@ -17,7 +20,13 @@
     minlength="9"
     maxlength="8"
     size="10" />
+    <script>
+    document.getElementById("btn").addEventListener("click", async () => {
+        const res = await fetch("https://<your-backend>.onrender.com/hello");
+        document.getElementById("msg").innerText = await res.text();
+    });
 
+    </script>
     <script>
     document.getElementById("btn").addEventListener("click", async () => { //click button, action
         const input = document.getElementById("UserInput").value; // get whats in the text box
