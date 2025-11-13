@@ -8,8 +8,8 @@
     <button id="btn">Type name:</button>
     <p id="msg"></p>
 
-    <button id="btn">Clicker:</button>
-    <p id="msg"></p>
+    <button id="btn2">Clicker:</button>
+    <p id="msg2"></p>
     
 
     <input
@@ -21,9 +21,9 @@
     maxlength="8"
     size="10" />
     <script>
-    document.getElementById("btn").addEventListener("click", async () => {
+    document.getElementById("btn2").addEventListener("click", async () => {
         const res = await fetch("https://<your-backend>.onrender.com/hello");
-        document.getElementById("msg").innerText = await res.text();
+        document.getElementById("msg2").innerText = await res.text();
     });
 
     </script>
