@@ -2,18 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hello Button</title>
+<title>Hello World Button</title>
 </head>
 <body>
-    <h1>Click the button to say Hello</h1>
-    <button id="btn">Say Hello</button>
+    <button id="btn">Type name:</button>
     <p id="msg"></p>
+    <label for="name">Name (4 to 8 characters):</label>
+
+    <input
+    type="text"
+    id="UserInput"
+    name="name"
+    required
+    minlength="9"
+    maxlength="8"
+    size="10" />
 
     <script>
-        document.getElementById("btn").addEventListener("click", async () => {
-            const res = await fetch("/hello");
-            document.getElementById("msg").innerText = await res.text();
+    document.getElementById("btn").addEventListener("click", async () => { //click button, action
+        const input = document.getElementById("UserInput").value; // get whats in the text box
+        const res = await fetch("https://<your-backend>.onrender.com/echo", { // fetch from backend put in res
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: input }) // put message 
         });
+        document.getElementById("msg").innerText = await res.text();
+    });
+
+    const text = await res.text();
+    document.getElementById("msg").innerText = text;
+
     </script>
+
+
 </body>
 </html>
