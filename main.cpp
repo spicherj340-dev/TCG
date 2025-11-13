@@ -10,7 +10,7 @@ using namespace std;
 int main() {
     httplib::Server svr; //instantiates the server
     
-
+    cout << "testingthing" << endl;
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
         std::ifstream file("index.html");
         std::stringstream buffer;
@@ -55,6 +55,7 @@ int main() {
     std::cout << "Server running on port 8080..." << std::endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
