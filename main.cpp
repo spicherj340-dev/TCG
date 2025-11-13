@@ -19,6 +19,7 @@ int main() {
     });
     // basic example:
     svr.Get("/hello", [](const httplib::Request&, httplib::Response& res) {
+        cout << "hello" << endl;
         res.set_content("Hello, World!", "text/plain");
     });
 
@@ -54,6 +55,7 @@ int main() {
     std::cout << "Server running on port 8080..." << std::endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
