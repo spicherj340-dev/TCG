@@ -15,7 +15,7 @@
     <p id="player1m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
     <script>
-    document.getElementById("btn2").addEventListener("click", async () => {
+    document.getElementById("player1").addEventListener("click", async () => {
         const res = await fetch("https://click-21ny.onrender.com/hello");
         document.getElementById("player1m").innerText = await res.text();
     });
@@ -25,7 +25,7 @@
     <p id="player2m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
     <script>
-    document.getElementById("btn2").addEventListener("click", async () => {
+    document.getElementById("player2").addEventListener("click", async () => {
         const res = await fetch("https://click-21ny.onrender.com/hello");
         document.getElementById("player2m").innerText = await res.text();
     });
@@ -36,7 +36,7 @@
     <p id="player3m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
     <script>
-    document.getElementById("btn2").addEventListener("click", async () => {
+    document.getElementById("player3").addEventListener("click", async () => {
         const res = await fetch("https://click-21ny.onrender.com/hello");
         document.getElementById("player3m").innerText = await res.text();
     });
@@ -47,7 +47,7 @@
     <p id="player4m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
     <script>
-    document.getElementById("btn2").addEventListener("click", async () => {
+    document.getElementById("player4").addEventListener("click", async () => {
         const res = await fetch("https://click-21ny.onrender.com/hello");
         document.getElementById("player4m").innerText = await res.text();
     });
