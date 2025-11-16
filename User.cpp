@@ -46,7 +46,7 @@ class User
     
 
     public:
-    User(string&username) : _name(username), _life(20), _deckbuilt(false){
+    User(string username) : _name(username), _life(20), _deckbuilt(false){
         //shuffle deck
         //initial draw
         /*do not allow game to start until deck is built. 
@@ -55,7 +55,7 @@ class User
         */
     };
 
-    User(string&username, int decknum): _name(username), _life(20),  _deckbuilt(false){
+    User(string username, int decknum): _name(username), _life(20),  _deckbuilt(false){
         _buildDeck(decknum);
     }; // initialize prebuilt deck
 
@@ -164,4 +164,5 @@ class User
         //do some losing functionality using game manager or something idk
         //might delete this function
     }
+
 };
