@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "json.hpp"
+#include "User.cpp"
 using json = nlohmann::json;
 using namespace std;
 
@@ -17,7 +18,7 @@ int main() {
         buffer << file.rdbuf();  // read the whole file
         res.set_content(buffer.str(), "text/html");
     });
-    // basic example:
+    // test, unused.
     svr.Get("/hello", [](const httplib::Request&, httplib::Response& res) {
         cout << "hello" << endl;
         res.set_content("Hello, World!", "text/plain");
@@ -25,7 +26,7 @@ int main() {
 
 
 
-    //press the create user button or soemthing
+    //enter a player name.
     svr.Post("/echo", [](const httplib::Request&req, httplib::Response& res) {
       
         try {
@@ -40,7 +41,6 @@ int main() {
                 res.set_content("Missing 'message' field", "text/plain");
                 return;
             }
-
             // Respond with formatted text
             res.set_content("You typed: " + message, "text/plain");
         }
@@ -55,6 +55,7 @@ int main() {
     std::cout << "Server running on port 8080..." << std::endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
