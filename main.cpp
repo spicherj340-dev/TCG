@@ -7,14 +7,15 @@
 using json = nlohmann::json;
 using namespace std;
 
+vector<User*> gamePlayers; // our players
 
 int main() {
     httplib::Server svr; //instantiates the server
     
     cout << "testingthing" << endl;
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
-        std::ifstream file("index.html");
-        std::stringstream buffer;
+        ifstream file("index.html");
+        stringstream buffer;
         buffer << file.rdbuf();  // read the whole file
         res.set_content(buffer.str(), "text/html");
     });
@@ -34,7 +35,7 @@ int main() {
             json data = json::parse(req.body);
 
             // Extract the message
-            std::string message = data.value("message", "");
+            string message = data.value("message", "");
 
             if (message.empty()) {
                 res.status = 400;
@@ -50,11 +51,44 @@ int main() {
         }
     });
 
+    svr.Post("/startgame", [](const httplib::Request& req, httplib::Response& res) {
+    try {
+        json data = json::parse(req.body);
+
+        if (!data.contains("players") || !data["players"].is_array()) {
+            res.status = 400;
+            res.set_content("Invalid player list", "text/plain");
+            return;
+        }
+
+        // Clear previous game if any
+        gamePlayers.clear();
+
+        for (auto& p : data["players"]) {
+            string name = p.get<string>();
+
+            // IMPORTANT: must use a std::string variable, not a temporary
+            string storedName = name;
+
+            // Create the user and store pointer
+            gamePlayers.push_back(new User(storedName));
+            cout << "Created user: " << storedName << endl;
+        }
+
+        res.set_content("Game started. 4 players created.", "text/plain");
+    }
+    catch (json::parse_error&) {
+        res.status = 400;
+        res.set_content("Invalid JSON", "text/plain");
+    }
+});
 
 
-    std::cout << "Server running on port 8080..." << std::endl;
+
+    cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
