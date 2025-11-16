@@ -84,7 +84,7 @@ int main() {
         players.pop_back();
         
         
-        res.set_content(contname,  "text/plain");
+        res.set_content(contname + players,  "text/plain");
     }
     catch (json::parse_error&) {
         res.status = 400;
@@ -97,6 +97,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
