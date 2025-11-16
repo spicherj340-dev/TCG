@@ -11,44 +11,45 @@
     <p id="msg2"></p>
 
 
-    <button id="btn">Player1:</button>
-    <p id="player1"></p>
+    <button id="player1">Player1:</button>
+    <p id="player1m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
     <script>
     document.getElementById("btn2").addEventListener("click", async () => {
         const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("msg2").innerText = await res.text();
+        document.getElementById("player1m").innerText = await res.text();
     });
     </script>
 
-    <button id="btn">Player2:</button>
-    <p id="player2"></p>
+    <button id="player2">Player2:</button>
+    <p id="player2m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
     <script>
     document.getElementById("btn2").addEventListener("click", async () => {
         const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("msg2").innerText = await res.text();
+        document.getElementById("player2m").innerText = await res.text();
+    });
+    </script>
+    
+
+    <button id="player3">Player3:</button>
+    <p id="player3m"></p>
+    <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
+    <script>
+    document.getElementById("btn2").addEventListener("click", async () => {
+        const res = await fetch("https://click-21ny.onrender.com/hello");
+        document.getElementById("player3m").innerText = await res.text();
     });
     </script>
 
-
-    <button id="btn">Player3:</button>
-    <p id="player3"></p>
+    
+    <button id="player4">Player4:</button>
+    <p id="player4m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
     <script>
     document.getElementById("btn2").addEventListener("click", async () => {
         const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("msg2").innerText = await res.text();
-    });
-    </script>
-
-    <button id="btn">Player4:</button>
-    <p id="player4"></p>
-    <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
-    <script>
-    document.getElementById("btn2").addEventListener("click", async () => {
-        const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("msg2").innerText = await res.text();
+        document.getElementById("player4m").innerText = await res.text();
     });
     </script>
 
