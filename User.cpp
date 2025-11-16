@@ -61,6 +61,7 @@ class User
 
     
     //user functions
+    string getName(){return _name}
     void changeDeck(int decknum){
         _deckbuilt = false;
         _buildDeck(decknum);
@@ -166,3 +167,4 @@ class User
     }
 
 };
+
