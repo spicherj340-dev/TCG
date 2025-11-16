@@ -74,8 +74,16 @@ int main() {
             gamePlayers.push_back(new User(storedName));
             cout << "Created user: " << storedName << endl;
         }
-        string contname = "Game started. 4 players created: "
-        string players = gamePlayers[1].
+        string contname = "Game started. 4 players created: ";
+        string players;
+        for (auto & p : gamePlayers){
+            players += p.getName();
+            players += ", ";
+        }
+        players.pop_back();
+        players.pop_back();
+        
+        
         res.set_content(contname + , "text/plain");
     }
     catch (json::parse_error&) {
@@ -89,6 +97,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
