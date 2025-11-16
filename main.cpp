@@ -61,13 +61,13 @@ int main() {
             return;
         }
 
-        // Clear previous game if any
+        // Clear previous game 
         gamePlayers.clear();
 
         for (auto& p : data["players"]) {
             string name = p.get<string>();
 
-            // IMPORTANT: must use a std::string variable, not a temporary
+            //use name as name of new user
             string storedName = name;
 
             // Create the user and store pointer
@@ -83,7 +83,7 @@ int main() {
         players.pop_back();
         players.pop_back();
         
-        
+        //tell the user names
         res.set_content(contname + players,  "text/plain");
     }
     catch (json::parse_error&) {
@@ -97,6 +97,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
