@@ -88,6 +88,24 @@
     });
     </script>
 
+    <!--when press start play, instantiate the players respective user() -->
+    <script>
+    document.getElementById("btn2").addEventListener("click", async () => {
+    const p1 = document.getElementById("UserInput1").value;
+    const p2 = document.getElementById("UserInput2").value;
+    const p3 = document.getElementById("UserInput3").value;
+    const p4 = document.getElementById("UserInput4").value;
+    const res = await fetch("https://click-21ny.onrender.com/startgame", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            players: [p1, p2, p3, p4]
+        })
+    });
+    document.getElementById("msg").innerText = await res.text();
+});
+</script>
+
 
 
 
