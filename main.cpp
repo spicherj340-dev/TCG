@@ -77,14 +77,14 @@ int main() {
         string contname = "Game started. 4 players created: ";
         string players;
         for (auto & p : gamePlayers){
-            players += p.getName();
+            players += p->getName();
             players += ", ";
         }
         players.pop_back();
         players.pop_back();
         
         
-        res.set_content(contname + , "text/plain");
+        res.set_content(contname,  "text/plain");
     }
     catch (json::parse_error&) {
         res.status = 400;
@@ -97,10 +97,6 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
-
-
-
-
 
 
 
