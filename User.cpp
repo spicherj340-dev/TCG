@@ -156,6 +156,7 @@ class User
         if(_life <= 0 ){
             lost();
         }
+        else{_life-=amount;}
     }
     int Heal(int amount){
         _life+=amount;
@@ -167,5 +168,6 @@ class User
     }
 
 };
+
 
 
