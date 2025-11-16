@@ -22,7 +22,7 @@
     size="10" />
     <script>
     document.getElementById("btn2").addEventListener("click", async () => {
-        const res = await fetch("https://<your-backend>.onrender.com/hello");
+        const res = await fetch("hhttps://click-21ny.onrender.com/hello");
         document.getElementById("msg2").innerText = await res.text();
     });
 
@@ -30,16 +30,13 @@
     <script>
     document.getElementById("btn").addEventListener("click", async () => { //click button, action
         const input = document.getElementById("UserInput").value; // get whats in the text box
-        const res = await fetch("https://<your-backend>.onrender.com/echo", { // fetch from backend put in res
+        const res = await fetch("https://click-21ny.onrender.com/echo", { // fetch from backend put in res
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: input }) // put message 
         });
         document.getElementById("msg").innerText = await res.text();
     });
-
-    const text = await res.text();
-    document.getElementById("msg").innerText = text;
 
     </script>
 
