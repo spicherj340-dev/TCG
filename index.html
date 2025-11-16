@@ -14,44 +14,23 @@
     <button id="player1">Player1:</button>
     <p id="player1m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
-    <script>
-    document.getElementById("player1").addEventListener("click", async () => {
-        const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("player1m").innerText = await res.text();
-    });
-    </script>
+
 
     <button id="player2">Player2:</button>
     <p id="player2m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
-    <script>
-    document.getElementById("player2").addEventListener("click", async () => {
-        const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("player2m").innerText = await res.text();
-    });
-    </script>
+
     
 
     <button id="player3">Player3:</button>
     <p id="player3m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
-    <script>
-    document.getElementById("player3").addEventListener("click", async () => {
-        const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("player3m").innerText = await res.text();
-    });
-    </script>
+
 
     
     <button id="player4">Player4:</button>
     <p id="player4m"></p>
     <input type="text" id="UserInput" name="name" required minlength="1" maxlength="10" size="10" />
-    <script>
-    document.getElementById("player4").addEventListener("click", async () => {
-        const res = await fetch("https://click-21ny.onrender.com/hello");
-        document.getElementById("player4m").innerText = await res.text();
-    });
-    </script>
 
 
 
@@ -66,7 +45,7 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: input }) // put message 
         });
-        document.getElementById("msg").innerText = await res.text();
+        document.getElementById("plaer1m").innerText = await res.text();
     });
     </script>
 
@@ -79,7 +58,7 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: input }) // put message 
         });
-        document.getElementById("msg").innerText = await res.text();
+        document.getElementById("player2m").innerText = await res.text();
     });
     </script>
 
@@ -92,7 +71,7 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: input }) // put message 
         });
-        document.getElementById("msg").innerText = await res.text();
+        document.getElementById("player3m").innerText = await res.text();
     });
     </script>
 
@@ -105,7 +84,7 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: input }) // put message 
         });
-        document.getElementById("msg").innerText = await res.text();
+        document.getElementById("player4m").innerText = await res.text();
     });
     </script>
 
