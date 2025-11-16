@@ -74,8 +74,9 @@ int main() {
             gamePlayers.push_back(new User(storedName));
             cout << "Created user: " << storedName << endl;
         }
-
-        res.set_content("Game started. 4 players created.", "text/plain");
+        string contname = "Game started. 4 players created: "
+        string players = gamePlayers[1].
+        res.set_content(contname + , "text/plain");
     }
     catch (json::parse_error&) {
         res.status = 400;
@@ -88,6 +89,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
