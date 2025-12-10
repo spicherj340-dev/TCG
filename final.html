@@ -63,12 +63,13 @@
         .control-bar {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Vertically aligns controls and image */
             width: 90%;
             margin: 40px auto;
             gap: 50px;
         }
 
+        /* --- Left Controls --- */
         .left-controls {
             display: grid;
             grid-template-columns: auto auto;
@@ -80,6 +81,7 @@
         .mana-display { grid-column: 2; font-size: 1.2em; font-weight: bold; }
         .draw-btn { grid-column: 1 / 3; padding: 8px; }
 
+        /* --- Right Controls --- */
         .right-controls {
             display: grid;
             grid-template-columns: 1fr auto;
@@ -98,12 +100,16 @@
         .player-life { font-size: 1.5em; color: red; }
         .pass-btn { height: 100%; padding: 15px 20px; }
 
+        /* --- Center Image (now uses the larger size) --- */
         .center-image {
-            width: 250px;
+            width: 250px; /* Using the large size */
             height: auto;
             display: block;
         }
 
+        /* ------------------------------------------------ */
+        /* 3. SCROLLABLE GALLERY (.image-gallery) */
+        /* ------------------------------------------------ */
         .image-gallery {
             display: flex;
             white-space: nowrap;
@@ -125,37 +131,31 @@
 </head>
 <body>
 
-    <div class="game-area">
-        <div class="player-box" id="p1box">
-            <div class="player-name">Player 1</div>
-            <div class="stat-group"><label>Life</label><div class="stat-value" id="p1life">0</div></div>
-            <div class="stat-group"><label>Mana</label><div class="stat-value" id="p1mana">0</div></div>
-        </div>
-        
-        <div class="player-box" id="p2box">
+        <div class="game-area" id="row2">
+        <div class="player-box">
             <div class="player-name">Player 2</div>
-            <div class="stat-group"><label>Life</label><div class="stat-value" id="p2life">0</div></div>
-            <div class="stat-group"><label>Mana</label><div class="stat-value" id="p2mana">0</div></div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
         
-        <div class="player-box" id="p3box">
-            <div class="player-name">Player 3</div>
-            <div class="stat-group"><label>Life</label><div class="stat-value" id="p3life">0</div></div>
-            <div class="stat-group"><label>Mana</label><div class="stat-value" id="p3mana">0</div></div>
+        <div class="player-box" id="row3">
+            <div class="player-name">Player 3 </div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-
-        <div class="player-box" id="p4box">
-            <div class="player-name">Player 4</div>
-            <div class="stat-group"><label>Life</label><div class="stat-value" id="p4life">0</div></div>
-            <div class="stat-group"><label>Mana</label><div class="stat-value" id="p4mana">0</div></div>
+        
+        <div class="player-box" id="row4">
+            <div class="player-name">Player 4 </div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
     </div>
 
-    <div class="control-bar">
+    <div class="control-bar" id = "row1">
         
         <div class="left-controls">
             <button class="discard-btn">Discard</button>
-            <div class="mana-display" id="currMana">Mana: 0</div>
+            <div class="mana-display" id = "p1mana">Mana: 49</div>
             <button class="draw-btn">Draw</button>
         </div>
 
@@ -163,8 +163,8 @@
         
         <div class="right-controls">
             <div class="player-info">
-                <span class="player-name" id="currName">Player</span>
-                <span class="player-life" id="currLife">0</span>
+                <span class="player-name">Player 1 Name</span>
+                <span class="player-life" id = "p1life">8000</span>
             </div>
             <button class="pass-btn">PASS</button>
         </div>
@@ -178,10 +178,7 @@
         <img src="placeholder.jpeg" alt="Card 5">
         <img src="placeholder.jpeg" alt="Card 6">
     </div>
-
-
 <script>
-/* Fetch player data from /refresh and update UI */
 async function refreshData() {
     try {
         let response = await fetch("/refresh");
@@ -227,8 +224,6 @@ async function refreshData() {
 // Refresh once on load
 window.onload = refreshData;
 
-// Optional auto-refresh
-setInterval(refreshData, 2000);
 </script>
 
 </body>
