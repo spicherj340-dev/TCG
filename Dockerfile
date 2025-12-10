@@ -2,7 +2,7 @@
 FROM ubuntu:22.04
 
 # Install g++ (compiler)
-RUN apt update && apt install -y g++
+RUN g++ main.cpp -o app -std=c++17 -O2 -lm 2>&1
 
 # Set working directory
 WORKDIR /app
