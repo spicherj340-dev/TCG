@@ -2,7 +2,6 @@
 FROM ubuntu:22.04
 RUN apt update && apt install -y g++
 # Install g++ (compiler)
-RUN g++ main.cpp -o app -std=c++17 -O2 -lm 2>&1
 
 # Set working directory
 WORKDIR /app
@@ -11,7 +10,7 @@ WORKDIR /app
 COPY . .
 
 # Compile C++ program directly
-RUN g++ main.cpp -o app -std=c++17 -O2
+RUN g++ main.cpp -o app -std=c++17 -O2 -lm 2>&1
 
 # Expose server port
 EXPOSE 8080
