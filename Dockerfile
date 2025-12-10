@@ -10,7 +10,7 @@ WORKDIR /app
 COPY . .
 
 # Compile C++ program directly
-RUN g++ main.cpp -o app -std=c++17 -O2 -lm 2>&1
+RUN g++ -std=c++17 -O2 -Wall -Wextra $(find . -name "*.cpp") -o app -lm
 
 # Expose server port
 EXPOSE 8080
