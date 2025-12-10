@@ -17,7 +17,6 @@
         }
 
         .player-box {
-            display: grid;
             grid-template-columns: 1fr 1fr; 
             padding: 15px;
             border: 2px solid #333;
@@ -133,18 +132,18 @@
 </head>
 <body>
 
-    <div class="game-area">
+    <div class="game-area" id="row1">
         <div class="player-box">
             <div class="player-name">Player 1 Name</div>
             <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
             <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-        <div class="player-box">
+        <div class="player-box" id="row2">
             <div class="player-name">Player 2 Name</div>
             <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
             <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-        <div class="player-box">
+        <div class="player-box" id="row3">
             <div class="player-name">Player 3 Name</div>
             <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
             <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
@@ -178,6 +177,17 @@
         <img src="placeholder.jpeg" alt="Card 5">
         <img src="placeholder.jpeg" alt="Card 6">
     </div>
+<script>
+window.onload = function() {
+    const n = parseInt(localStorage.getItem("players")) || 2;
+    for(let i=1;i<=3;i++){
+        let row = document.getElementById("row"+i);
+        if(i <= n) row.style.display = "grid";
+        else row.style.display = "none";
+    }
+};
+
+</script>
 
 </body>
 </html>
