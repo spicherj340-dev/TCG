@@ -1,6 +1,6 @@
 # Use Ubuntu as the base image
 FROM ubuntu:22.04
-
+RUN apt update && apt install -y g++
 # Install g++ (compiler)
 RUN g++ main.cpp -o app -std=c++17 -O2 -lm 2>&1
 
