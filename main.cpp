@@ -79,6 +79,7 @@ int main() {
             //use name as name of new user
             string storedName = name;
             if(storedName == ""){
+                gm->finalCleanup();
                 throw logic_error("Must name all players.");
             }
             else{
