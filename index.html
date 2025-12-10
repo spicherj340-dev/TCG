@@ -37,7 +37,8 @@
 
     button {
         padding: 6px 12px;
-    }
+        }
+    .msg { color: green; font-size: 14px; margin-left: 5px; }
 </style>
 
 </head>
@@ -45,34 +46,30 @@
 
 <h2>Players</h2>
 
-<div class="player-row">
+<div class="player-row" id="row1">
     <span>Player 1:</span>
     <input type="text" id="UserInput1" maxlength="10">
     <button id="player1">Select</button>
+    <span class="msg" id="player1m"></span>
 </div>
-
-<p id="player1m"></p>
-    
-<div class="player-row">
+<div class="player-row" id="row2">
     <span>Player 2:</span>
     <input type="text" id="UserInput2" maxlength="10">
     <button id="player2">Select</button>
+    <span class="msg" id="player2m"></span>
 </div>
-<p id="player2m"></p>
-
-<div class="player-row">
+<div class="player-row" id="row3">
     <span>Player 3:</span>
     <input type="text" id="UserInput3" maxlength="10">
     <button id="player3">Select</button>
+    <span class="msg" id="player3m"></span>
 </div>
-<p id="player3m"></p>
-
-<div class="player-row">
+<div class="player-row" id="row4">
     <span>Player 4:</span>
     <input type="text" id="UserInput4" maxlength="10">
     <button id="player4">Select</button>
+    <span class="msg" id="player4m"></span>
 </div>
-<p id="player4m"></p>
 
 <br>
 
@@ -81,68 +78,47 @@
 
 
 <!-- SAME JAVASCRIPT, UNCHANGED -->
-
 <script>
-document.getElementById("player1").addEventListener("click", async () => {
-    const input = document.getElementById("UserInput1").value;
-    const res = await fetch("/echo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input })
-    });
-    document.getElementById("player1m").innerText = await res.text();
-});
-</script>
+// show only the number of players selected
+window.onload = function() {
+    const n = parseInt(localStorage.getItem("players")) || 2;
+    for(let i=1;i<=4;i++){
+        let row = document.getElementById("row"+i);
+        if(i <= n) row.style.display = "grid";
+        else row.style.display = "none";
+    }
+};
 
-<script>
-document.getElementById("player2").addEventListener("click", async () => {
-    const input = document.getElementById("UserInput2").value;
-    const res = await fetch("/echo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input })
-    });
-    document.getElementById("player2m").innerText = await res.text();
-});
-</script>
+// player button event listeners
+for(let i=1;i<=4;i++){
+    const btn = document.getElementById("player"+i);
+    if(btn){
+        btn.addEventListener("click", async () => {
+            const input = document.getElementById("UserInput"+i).value;
+            const res = await fetch("/echo", {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({message:input})
+            });
+            document.getElementById("player"+i+"m").innerText = await res.text();
+        });
+    }
+}
 
-<script>
-document.getElementById("player3").addEventListener("click", async () => {
-    const input = document.getElementById("UserInput3").value;
-    const res = await fetch("/echo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input })
-    });
-    document.getElementById("player3m").innerText = await res.text();
-});
-</script>
-
-<script>
-document.getElementById("player4").addEventListener("click", async () => {
-    const input = document.getElementById("UserInput4").value;
-    const res = await fetch("/echo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input })
-    });
-    document.getElementById("player4m").innerText = await res.text();
-});
-</script>
-
-<script>
+// start game button
 document.getElementById("btn2").addEventListener("click", async () => {
-    const p1 = document.getElementById("UserInput1").value;
-    const p2 = document.getElementById("UserInput2").value;
-    const p3 = document.getElementById("UserInput3").value;
-    const p4 = document.getElementById("UserInput4").value;
-
+    const players=[];
+    for(let i=1;i<=4;i++){
+        const row = document.getElementById("row"+i);
+        if(row.style.display!="none"){
+            players.push(document.getElementById("UserInput"+i).value);
+        }
+    }
     const res = await fetch("/startgame", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ players: [p1, p2, p3, p4] })
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({players})
     });
-
     document.getElementById("msg").innerText = await res.text();
 });
 </script>
