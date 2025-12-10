@@ -2,15 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Game Stat Display</title>
+    <title>Game UI Layout</title>
     <style>
-        /*
-        ******************************************************
-        * CSS STYLES (All styles provided in your prompt are correct
-        * and consolidated here. No changes needed to the styles themselves.)
-        ******************************************************
-        */
-        
+        /*three stat boxes*/
         .game-area {
             display: flex;
             justify-content: space-around;
@@ -65,18 +59,17 @@
             border-radius: 4px;
         }
 
-        /* ---------------------------------------------------- */
-        /* Control Bar & Center Image Styles */
-        /* ---------------------------------------------------- */
+        /*controls for curr player*/
         .control-bar {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Vertically aligns controls and image */
             width: 90%;
             margin: 40px auto;
             gap: 50px;
         }
 
+        /* --- Left Controls --- */
         .left-controls {
             display: grid;
             grid-template-columns: auto auto;
@@ -88,6 +81,7 @@
         .mana-display { grid-column: 2; font-size: 1.2em; font-weight: bold; }
         .draw-btn { grid-column: 1 / 3; padding: 8px; }
 
+        /* --- Right Controls --- */
         .right-controls {
             display: grid;
             grid-template-columns: 1fr auto;
@@ -101,34 +95,29 @@
             text-align: left;
             min-width: 100px;
         }
-        
+
         .player-name { font-weight: bold; }
         .player-life { font-size: 1.5em; color: red; }
         .pass-btn { height: 100%; padding: 15px 20px; }
 
+        /* --- Center Image (now uses the larger size) --- */
         .center-image {
-            /* Now positioned by the Flex container, not absolutely */
+            /* Now positioned by the Flex container */
             position: static;
-            width: 150px;
-            height: 150px;
-        }
-        /* ---------------------------------------------------- */
-        /* Image Underneath & Gallery Styles */
-        /* ---------------------------------------------------- */
-        .image-underneath {
-            width: 250px; 
-            height: auto; 
-            display: block; 
-            margin: 30px auto 0; /* Adjusted margin for better flow */
+            width: 250px; /* Using the large size */
+            height: auto;
+            display: block;
         }
 
-
+        /* ------------------------------------------------ */
+        /* 3. SCROLLABLE GALLERY (.image-gallery) */
+        /* ------------------------------------------------ */
         .image-gallery {
             display: flex;
             white-space: nowrap;
             overflow-x: scroll;
             width: 80%;
-            margin: 20px auto 40px; /* Reduced gap between gallery and controls */
+            margin: 20px auto 40px;
             padding: 10px 0;
             border: 2px solid #555;
             border-radius: 6px;
@@ -170,11 +159,11 @@
             <button class="draw-btn">Draw</button>
         </div>
 
-        <img src="your-image-source.png" class="center-image" alt="Game Asset">
+        <img src="placeholder.jpeg" class="center-image" alt="Game Asset">
         
         <div class="right-controls">
             <div class="player-info">
-                <span class="player-name">Player Name</span>
+                <span class="player-name">Current Player Name</span>
                 <span class="player-life">8000</span>
             </div>
             <button class="pass-btn">PASS</button>
@@ -188,9 +177,7 @@
         <img src="placeholder.jpeg" alt="Card 4">
         <img src="placeholder.jpeg" alt="Card 5">
         <img src="placeholder.jpeg" alt="Card 6">
-        </div>
-    
-    <img src="placeholder.jpeg" class="image-underneath" alt="Game Asset">
+    </div>
 
 </body>
 </html>
