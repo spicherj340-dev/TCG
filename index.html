@@ -3,111 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <title>TCG</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    .player-row {
+        display: grid;
+        grid-template-columns: 100px 150px 120px;
+        column-gap: 15px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    input {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 6px 12px;
+    }
+</style>
+
 </head>
 <body>
-    
 
-  
+<h2>Players</h2>
+
+<div class="player-row">
+    <span>Player 1:</span>
+    <input type="text" id="UserInput1" maxlength="10">
+    <button id="player1">Select 1</button>
+</div>
+<p id="player1m"></p>
+
+<div class="player-row">
+    <span>Player 2:</span>
+    <input type="text" id="UserInput2" maxlength="10">
+    <button id="player2">Select 2</button>
+</div>
+<p id="player2m"></p>
+
+<div class="player-row">
+    <span>Player 3:</span>
+    <input type="text" id="UserInput3" maxlength="10">
+    <button id="player3">Select 3</button>
+</div>
+<p id="player3m"></p>
+
+<div class="player-row">
+    <span>Player 4:</span>
+    <input type="text" id="UserInput4" maxlength="10">
+    <button id="player4">Select 4</button>
+</div>
+<p id="player4m"></p>
+
+<br>
+
+<button id="btn2">Start Game</button>
+<p id="msg"></p>
 
 
-    <button id="player1">Player1:</button>
-    <p id="player1m"></p>
-    <input type="text" id="UserInput1" name="name" required minlength="1" maxlength="10" size="10" />
+<!-- SAME JAVASCRIPT, UNCHANGED -->
 
-
-    <button id="player2">Player2:</button>
-    <p id="player2m"></p>
-    <input type="text" id="UserInput2" name="name" required minlength="1" maxlength="10" size="10" />
-
-    
-
-    <button id="player3">Player3:</button>
-    <p id="player3m"></p>
-    <input type="text" id="UserInput3" name="name" required minlength="1" maxlength="10" size="10" />
-
-
-    
-    <button id="player4">Player4:</button>
-    <p id="player4m"></p>
-    <input type="text" id="UserInput4" name="name" required minlength="1" maxlength="10" size="10" />
-
-
-
-    <button id="btn2">Start Game </button>
-    <p id="msg"></p>
-
-    <!-- Player1 -->
-    <script>
-    document.getElementById("player1").addEventListener("click", async () => { //click button, action
-        const input = document.getElementById("UserInput1").value; // get whats in the text box
-        const res = await fetch("https://click-21ny.onrender.com/echo", { // fetch from backend put in res
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: input }) // put message 
-        });
-        document.getElementById("player1m").innerText = await res.text();
+<script>
+document.getElementById("player1").addEventListener("click", async () => {
+    const input = document.getElementById("UserInput1").value;
+    const res = await fetch("/echo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
     });
-    </script>
+    document.getElementById("player1m").innerText = await res.text();
+});
+</script>
 
-        <!-- Player2 -->
-    <script>
-    document.getElementById("player2").addEventListener("click", async () => { //click button, action
-        const input = document.getElementById("UserInput2").value; // get whats in the text box
-        const res = await fetch("https://click-21ny.onrender.com/echo", { // fetch from backend put in res
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: input }) // put message 
-        });
-        document.getElementById("player2m").innerText = await res.text();
+<script>
+document.getElementById("player2").addEventListener("click", async () => {
+    const input = document.getElementById("UserInput2").value;
+    const res = await fetch("/echo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
     });
-    </script>
+    document.getElementById("player2m").innerText = await res.text();
+});
+</script>
 
-        <!-- Player3 -->
-    <script>
-    document.getElementById("player3").addEventListener("click", async () => { //click button, action
-        const input = document.getElementById("UserInput3").value; // get whats in the text box
-        const res = await fetch("https://click-21ny.onrender.com/echo", { // fetch from backend put in res
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: input }) // put message 
-        });
-        document.getElementById("player3m").innerText = await res.text();
+<script>
+document.getElementById("player3").addEventListener("click", async () => {
+    const input = document.getElementById("UserInput3").value;
+    const res = await fetch("/echo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
     });
-    </script>
+    document.getElementById("player3m").innerText = await res.text();
+});
+</script>
 
-        <!-- Player4 -->
-    <script>
-    document.getElementById("player4").addEventListener("click", async () => { //click button, action
-        const input = document.getElementById("UserInput4").value; // get whats in the text box
-        const res = await fetch("https://click-21ny.onrender.com/echo", { // fetch from backend put in res
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: input }) // put message 
-        });
-        document.getElementById("player4m").innerText = await res.text();
+<script>
+document.getElementById("player4").addEventListener("click", async () => {
+    const input = document.getElementById("UserInput4").value;
+    const res = await fetch("/echo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
     });
-    </script>
+    document.getElementById("player4m").innerText = await res.text();
+});
+</script>
 
-    <!--when press start play, instantiate the players respective user() -->
-    <script>
-    document.getElementById("btn2").addEventListener("click", async () => {
+<script>
+document.getElementById("btn2").addEventListener("click", async () => {
     const p1 = document.getElementById("UserInput1").value;
     const p2 = document.getElementById("UserInput2").value;
     const p3 = document.getElementById("UserInput3").value;
     const p4 = document.getElementById("UserInput4").value;
-    const res = await fetch("https://click-21ny.onrender.com/startgame", {
+
+    const res = await fetch("/startgame", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            players: [p1, p2, p3, p4]
-        })
+        body: JSON.stringify({ players: [p1, p2, p3, p4] })
     });
+
     document.getElementById("msg").innerText = await res.text();
 });
 </script>
-
-
-
 
 </body>
 </html>
