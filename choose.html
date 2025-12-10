@@ -24,9 +24,9 @@
         align-items: center;
         margin-bottom: 10px;
 
-        background: rgba(255, 255, 255, 0.7); /* <-- Fixed */
+        background: rgba(255, 255, 255, 0.7); 
         padding: 10px;
-        border-radius: 8px; /* <-- FINAL FIX: Removed space '8 px' */
+        border-radius: 8px; 
         width: 400px;
     }
 
@@ -119,6 +119,7 @@ document.getElementById("btn2").addEventListener("click", async () => {
         body: JSON.stringify({players})
     });
     document.getElementById("msg").innerText = await res.text();
+    window.location.href = "/final";      // go to game page
 });
 </script>
 

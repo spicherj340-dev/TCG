@@ -34,7 +34,9 @@ int main() {
     svr.Get("/index", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
         res.set_content(load_file("choose.html"), "text/html");
     });
-    
+    svr.Get("/final", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
+        res.set_content(load_file("final.html"), "text/html");
+    });
 
     //enter a player name.
     svr.Post("/echo", [](const httplib::Request&req, httplib::Response& res) {
