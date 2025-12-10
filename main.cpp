@@ -34,9 +34,34 @@ int main() {
     svr.Get("/index", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
         res.set_content(load_file("choose.html"), "text/html");
     });
-    svr.Get("/final", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
+    svr.Get("/final", [gm](const httplib::Request&, httplib::Response& res) { // sets site to index html
         res.set_content(load_file("final.html"), "text/html");
+        
     });
+
+    svr.Get("/refresh", [gm](const httplib::Request&, httplib::Response& res) {
+
+        auto &players = gm->getPlayers();
+
+
+        //covert to json
+        std::ostringstream out;
+        out << "{ \"players\": [";
+        
+        for (int i = 0; i < players.size(); i++) {
+            out << "{"
+                << "\"name\":\"" << players[i]->getName() << "\","
+                << "\"life\":" << players[i]->getLife() << ","
+                << "\"mana\":" << players[i]->getCharge()
+                << "}";
+
+            if (i + 1 < players.size()) out << ",";
+        }
+
+        out << "] }";
+
+        res.set_content(out.str(), "application/json");
+});
 
     //enter a player name.
     svr.Post("/echo", [](const httplib::Request&req, httplib::Response& res) {
