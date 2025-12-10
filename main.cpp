@@ -82,7 +82,7 @@ int main() {
             //use name as name of new user
             string storedName = name;
             if(storedName == ""){
-                throw logic_error("message");
+                throw logic_error("Must name all players.");
             }
             // Create the user and store pointer
             gamePlayers.push_back(new User(storedName));
@@ -104,9 +104,13 @@ int main() {
         res.status = 400;
         res.set_content("Invalid JSON", "text/plain");
     }
-    catch(logic_error&){
-        res.set_content("All players must have a name." "text/plain");
-    }
+    catch(std::logic_error& e){ 
+        res.status = 400; 
+        
+ 
+        res.set_content(e.what(), "text/plain"); 
+   
+}
 });
 
 
@@ -114,6 +118,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
