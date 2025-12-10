@@ -23,7 +23,7 @@ int main() {
     svr.set_mount_point("/", ".");
     
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
-        res.set_content(load_file("choose.html"), "text/html");
+        res.set_content(load_file("index.html"), "text/html");
     });
     // test, unused.
     svr.Get("/hello", [](const httplib::Request&, httplib::Response& res) {
@@ -109,6 +109,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
