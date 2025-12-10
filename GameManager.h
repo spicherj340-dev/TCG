@@ -60,6 +60,8 @@ public:
 
     void eventAdd(const GameEvent& ev);
 
+    const vector<User*>& getPlayers() const { return _players; }
+
 // These are PRIVATE methods, generally you should not be able to skip phases and such
     // The game manager handles such events
 private:

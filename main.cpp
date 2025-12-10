@@ -4,11 +4,10 @@
 #include <sstream>
 #include "json.hpp"
 #include "User.cpp"
+#include "GameManager.h"
+
 using json = nlohmann::json;
 using namespace std;
-
-vector<User*> gamePlayers; // our players
-
 
 std::string load_file(const std::string& path){
     std::ifstream f(path);
@@ -22,6 +21,8 @@ int main() {
     // Serve static files from current directory
     svr.set_mount_point("/", ".");
     
+    GameManager* gm = GameManager::getInstance();
+
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
         res.set_content(load_file("index.html"), "text/html");
     });
@@ -34,10 +35,6 @@ int main() {
         res.set_content(load_file("choose.html"), "text/html");
     });
     
-    
-    
-
-
 
     //enter a player name.
     svr.Post("/echo", [](const httplib::Request&req, httplib::Response& res) {
@@ -63,7 +60,7 @@ int main() {
         }
     });
 
-    svr.Post("/startgame", [](const httplib::Request& req, httplib::Response& res) {
+    svr.Post("/startgame", [gm](const httplib::Request& req, httplib::Response& res) {
     try {
         json data = json::parse(req.body);
 
@@ -74,7 +71,7 @@ int main() {
         }
 
         // Clear previous game 
-        gamePlayers.clear();
+        // gm->finalCleanup();
 
         for (auto& p : data["players"]) {
             string name = p.get<string>();
@@ -85,12 +82,13 @@ int main() {
                 throw logic_error("Must name all players.");
             }
             // Create the user and store pointer
-            gamePlayers.push_back(new User(storedName));
+            User * u = new User(storedName);
+            gm->addPlayer(u);
             cout << "Created user: " << storedName << endl;
         }
         string contname = "Game started. Players created: ";
         string players;
-        for (auto & p : gamePlayers){
+        for (auto  p : gm->getPlayers()){
             players += p->getName();
             players += ", ";
         }
