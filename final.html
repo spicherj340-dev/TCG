@@ -5,7 +5,7 @@
     <title>Game UI Layout</title>
 
     <style>
-        /*three stat boxes*/
+        /*three stat boxes, 'benched' players*/
         .game-area {
             display: flex;
             justify-content: space-around;
@@ -60,7 +60,7 @@
             border-radius: 4px;
         }
 
-        /*controls for curr player*/
+        /*current player controls uservector[0] player (player whos turn it is)*/
         .control-bar {
             display: flex;
             justify-content: center;
@@ -98,14 +98,14 @@
         .player-life { font-size: 1.5em; color: red; }
         .pass-btn { height: 100%; padding: 15px 20px; }
 
-        .center-image {
+        .currcard-played {
             width: 250px;
             height: auto;
             display: block;
         }
 
-        /* Card gallery */
-        .image-gallery {
+        /* current cards, make scrollable. later, make it dynamically appear */
+        .hand-cards {
             display: flex;
             white-space: nowrap;
             overflow-x: scroll;
@@ -116,7 +116,7 @@
             border-radius: 6px;
         }
 
-        .image-gallery img {
+        .hand-cards img {
             flex-shrink: 0;
             width: 120px;
             height: 160px;
@@ -153,7 +153,7 @@
             <button class="draw-btn">Draw</button>
         </div>
 
-        <img src="placeholder.jpeg" class="center-image" alt="Game Asset">
+        <img src="placeholder.jpeg" class="currcard-played" alt="Game Asset">
 
         <div class="right-controls">
             <div class="player-info">
@@ -164,7 +164,7 @@
         </div>
     </div>
 
-    <div class="image-gallery">
+    <div class="hand-cards"> <!-- placeholder for now. will dynamically add deck later, and make them buttons-->
         <img src="placeholder.jpeg" alt="Card 1">
         <img src="placeholder.jpeg" alt="Card 2">
         <img src="placeholder.jpeg" alt="Card 3">
@@ -173,14 +173,14 @@
         <img src="placeholder.jpeg" alt="Card 6">
     </div>
 
-    <!-- FINAL JAVASCRIPT -->
+    <!-- reset values every time a turn happens. backend should make first user in vector the currentplayer -->
     <script>
     async function refreshData() {
         let res = await fetch("/refresh");
         let data = await res.json();
         const players = data.players;
 
-        // update player2–4
+        // update players at top
         const rows = [
             document.querySelector("#row2"),
             document.querySelector("#row3"),
@@ -188,9 +188,9 @@
         ];
 
         for (let i = 0; i < rows.length; i++) {
-            const p = players[i + 1]; // backend players 1→[1], 2→[2], 3→[3]
+            const p = players[i + 1]; // set each player to correct value
             const box = rows[i];
-
+            //if player exists (2-4) then set to display their block; update their vlues
             if (p) {
                 box.style.display = "block";
                 box.querySelector(".player-name").textContent = p.name;
@@ -203,7 +203,7 @@
             }
         }
 
-        // update player1 (right controls)
+        // update player1 
         if (players[0]) {
             const p1 = players[0];
             document.querySelector(".right-controls .player-name").textContent = p1.name;
