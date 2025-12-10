@@ -59,7 +59,7 @@ int main() {
             res.set_content("Invalid JSON", "text/plain");
         }
     });
-
+    //press start game
     svr.Post("/startgame", [gm](const httplib::Request& req, httplib::Response& res) {
     try {
         json data = json::parse(req.body);
@@ -81,10 +81,13 @@ int main() {
             if(storedName == ""){
                 throw logic_error("Must name all players.");
             }
-            // Create the user and store pointer
-            User * u = new User(storedName);
-            gm->addPlayer(u);
-            cout << "Created user: " << storedName << endl;
+            else{
+                // Create the user and store pointer
+                User * u = new User(storedName);
+                gm->addPlayer(u);
+                cout << "Created user: " << storedName << endl;
+            }
+            
         }
         string contname = "Game started. Players created: ";
         string players;
