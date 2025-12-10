@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "json.hpp"
-#include "GameManager.h"
+#include "User.cpp"
 using json = nlohmann::json;
 using namespace std;
 
