@@ -88,7 +88,7 @@ int main() {
             gamePlayers.push_back(new User(storedName));
             cout << "Created user: " << storedName << endl;
         }
-        string contname = "Game started. 4 players created: ";
+        string contname = "Game started. Players created: ";
         string players;
         for (auto & p : gamePlayers){
             players += p->getName();
@@ -118,6 +118,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
