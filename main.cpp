@@ -65,13 +65,13 @@ int main() {
         json data = json::parse(req.body);
 
         if (!data.contains("players") || !data["players"].is_array()) {
+            gm->finalCleanup();
             res.status = 400;
             res.set_content("Invalid player list", "text/plain");
+           
             return;
         }
 
-        // Clear previous game 
-        gm->finalCleanup();
 
         for (auto& p : data["players"]) {
             string name = p.get<string>();
