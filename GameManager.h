@@ -62,6 +62,8 @@ public:
 
     const vector<User*>& getPlayers() const { return _players; }
 
+    void finalCleanup();
+
 // These are PRIVATE methods, generally you should not be able to skip phases and such
     // The game manager handles such events
 private:
@@ -81,5 +83,5 @@ private:
     void nextPlayer();
 
     // End game - overseer in charge of cleaning up cards and other objects
-    void finalCleanup();
+    
 };
