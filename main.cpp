@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "json.hpp"
-#include "User.cpp"
+#include "GameManager.h"
 using json = nlohmann::json;
 using namespace std;
 
@@ -118,6 +118,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
