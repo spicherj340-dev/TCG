@@ -81,6 +81,36 @@
             /* Optional: Add some space above the image to separate it from the player boxes */
             margin-top: 30px; 
         }
+
+
+        .image-gallery {
+            /* 1. Layout: Make it a single, horizontal row */
+            display: flex;
+            white-space: nowrap; /* Forces all children onto one line */
+
+            /* 2. Scrolling: Enable horizontal scrolling if content exceeds container width */
+            overflow-x: scroll;
+            
+            /* 3. Appearance (Optional but recommended) */
+            width: 80%; /* Limits the container width */
+            margin: 40px auto; /* Centers the scrollable area below everything */
+            padding: 10px 0;
+            border: 2px solid #555;
+            border-radius: 6px;
+        }
+
+/* Style the images inside the gallery */
+        .image-gallery img {
+            /* Ensures the images don't resize or shrink */
+            flex-shrink: 0; 
+            
+            /* Set a consistent size for each image */
+            width: 120px; 
+            height: 160px;
+            
+            /* Add space between the images */
+            margin-right: 15px; 
+        }
     </style>
 </head>
 <body>
@@ -133,5 +163,14 @@
 
     <img src="placeholder.jpeg" class="image-underneath" alt="Game Asset">
 
+
+    <div class="image-gallery">
+    <img src="placeholder.jpeg" alt="Card 1">
+    <img src="placeholder.jpeg" alt="Card 2">
+    <img src="placeholder.jpeg" alt="Card 3">
+    <img src="placeholder.jpeg" alt="Card 4">
+    <img src="placeholder.jpeg" alt="Card 5">
+    <img src="placeholder.jpeg" alt="Card 6">
+    </div>
 </body>
 </html>
