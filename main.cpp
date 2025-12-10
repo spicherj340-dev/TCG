@@ -81,7 +81,9 @@ int main() {
 
             //use name as name of new user
             string storedName = name;
-
+            if(storedName == ''){
+                throw logic_error();
+            }
             // Create the user and store pointer
             gamePlayers.push_back(new User(storedName));
             cout << "Created user: " << storedName << endl;
@@ -101,6 +103,9 @@ int main() {
     catch (json::parse_error&) {
         res.status = 400;
         res.set_content("Invalid JSON", "text/plain");
+    }
+    catch(logic_error&){
+        res.set_content("All players must have a name." "text/plain");
     }
 });
 
