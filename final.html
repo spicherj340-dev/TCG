@@ -1,11 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Game Stat Tracker</title>
+    <title>Game Stat Display</title>
     <style>
-        /* Include the CSS here for a self-contained example */
+        /* ------------------------------------------------ */
+        /* CSS REMAINS THE SAME (Minor adjustments for display-only fields) */
+        /* ------------------------------------------------ */
+        
         .game-area {
             display: flex;
             justify-content: space-around;
@@ -20,19 +22,18 @@
         .player-box {
             /* Inner Grid Layout: 2 columns */
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 1fr each for Life and Mana */
+            grid-template-columns: 1fr 1fr; 
             
             /* Styling */
             padding: 15px;
             border: 2px solid #333;
             border-radius: 8px;
-            width: 200px; /* Width of each box */
+            width: 200px; 
             background-color: #fff;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .player-name {
-            /* Makes the name span both columns */
             grid-column: 1 / 3; 
             font-weight: bold;
             font-size: 1.1em;
@@ -47,21 +48,23 @@
             padding: 0 5px;
         }
 
-        /* Style the labels (Life/Mana) */
+        /* Styling for the labels (Life/Mana) */
         .stat-group label {
-            display: block; /* Ensures label takes up full width above the textarea */
+            display: block; 
             font-size: 0.9em;
             color: #555;
-            margin-bottom: 3px;
+            margin-bottom: 5px; /* More space above the value */
         }
         
-        /* Style the text areas */
-        .stat-group textarea {
-            width: 80%; /* Takes up most of the column width */
-            height: 40px; /* Small height for stat entry */
-            resize: none; /* Prevents user from resizing the box */
-            text-align: center;
-            font-size: 1.2em;
+        /* NEW STYLE: For the non-editable display value */
+        .stat-value {
+            display: block;
+            font-size: 1.6em; /* Make the value prominent */
+            font-weight: bold;
+            color: #C00; /* Example color for Life/Mana */
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -73,13 +76,13 @@
             <div class="player-name">Player 1 Name</div>
             
             <div class="stat-group">
-                <label for="p1-life">Life</label>
-                <textarea id="p1-life" rows="1">8000</textarea>
+                <label>Life</label>
+                <div class="stat-value">8000</div>
             </div>
             
             <div class="stat-group">
-                <label for="p1-mana">Mana</label>
-                <textarea id="p1-mana" rows="1">5</textarea>
+                <label>Mana</label>
+                <div class="stat-value">5</div>
             </div>
         </div>
 
@@ -87,13 +90,13 @@
             <div class="player-name">Player 2 Name</div>
             
             <div class="stat-group">
-                <label for="p2-life">Life</label>
-                <textarea id="p2-life" rows="1">8000</textarea>
+                <label>Life</label>
+                <div class="stat-value">8000</div>
             </div>
             
             <div class="stat-group">
-                <label for="p2-mana">Mana</label>
-                <textarea id="p2-mana" rows="1">5</textarea>
+                <label>Mana</label>
+                <div class="stat-value">5</div>
             </div>
         </div>
 
@@ -101,13 +104,13 @@
             <div class="player-name">Player 3 Name</div>
             
             <div class="stat-group">
-                <label for="p3-life">Life</label>
-                <textarea id="p3-life" rows="1">8000</textarea>
+                <label>Life</label>
+                <div class="stat-value">8000</div>
             </div>
             
             <div class="stat-group">
-                <label for="p3-mana">Mana</label>
-                <textarea id="p3-mana" rows="1">5</textarea>
+                <label>Mana</label>
+                <div class="stat-value">5</div>
             </div>
         </div>
         
