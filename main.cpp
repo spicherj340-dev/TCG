@@ -12,6 +12,8 @@ vector<User*> gamePlayers; // our players
 int main() {
     httplib::Server svr; //instantiates the server
     
+    // Serve static files from current directory
+    server.set_mount_point("/", ".");
     cout << "testingthing" << endl;
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
         ifstream file("index.html");
@@ -97,6 +99,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
