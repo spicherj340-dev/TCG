@@ -66,6 +66,21 @@
             padding: 5px;
             border-radius: 4px;
         }
+
+        .image-underneath {
+            /* 1. Set a width so margin: auto has a reference point */
+            width: 250px; 
+            height: auto; 
+            
+            /* 2. Treat the image like a block element */
+            display: block; 
+            
+            /* 3. Automatic margins on left/right center the block */
+            margin: 30px auto; 
+            
+            /* Optional: Add some space above the image to separate it from the player boxes */
+            margin-top: 30px; 
+        }
     </style>
 </head>
 <body>
@@ -115,6 +130,8 @@
         </div>
         
     </div>
+
+    <img src="placeholder.jpeg" class="image-underneath" alt="Game Asset">
 
 </body>
 </html>
