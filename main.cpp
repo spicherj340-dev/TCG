@@ -81,8 +81,8 @@ int main() {
 
             //use name as name of new user
             string storedName = name;
-            if(storedName == ''){
-                throw logic_error();
+            if(storedName == ""){
+                throw logic_error("message");
             }
             // Create the user and store pointer
             gamePlayers.push_back(new User(storedName));
@@ -114,14 +114,6 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
-
-
-
-
-
-
-
-
 
 
 
