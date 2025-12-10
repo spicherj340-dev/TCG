@@ -71,7 +71,7 @@ int main() {
         }
 
         // Clear previous game 
-        // gm->finalCleanup();
+        gm->finalCleanup();
 
         for (auto& p : data["players"]) {
             string name = p.get<string>();
