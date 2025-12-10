@@ -183,7 +183,7 @@ window.onload = function() {
     const n = parseInt(localStorage.getItem("players")) || 2;
     for(let i=2;i<=4;i++){
         let row = document.getElementById("row"+i);
-        if(i <= n) row.style.display = "grid";
+        if(i+2 <= n) row.style.display = "grid";
         else row.style.display = "none";
     }
 };
