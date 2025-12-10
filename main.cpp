@@ -22,9 +22,7 @@ int main() {
     // Serve static files from current directory
     svr.set_mount_point("/", ".");
     
-    svr.Get("/", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
-        res.set_content(load_file("choose.html"), "text/html");
-    });
+  
     // test, unused.
     svr.Get("/hello", [](const httplib::Request&, httplib::Response& res) {
         cout << "hello" << endl;
@@ -109,6 +107,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
