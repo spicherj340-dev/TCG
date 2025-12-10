@@ -9,24 +9,33 @@ using namespace std;
 
 vector<User*> gamePlayers; // our players
 
+
+std::string load_file(const std::string& path){
+    std::ifstream f(path);
+    std::stringstream buffer;
+    buffer << f.rdbuf();
+    return buffer.str();
+}
 int main() {
     httplib::Server svr; //instantiates the server
-    
+
     // Serve static files from current directory
     svr.set_mount_point("/", ".");
     
-    cout << "testingthing" << endl;
     svr.Get("/", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
-        ifstream file("index.html");
-        stringstream buffer;
-        buffer << file.rdbuf();  // read the whole file
-        res.set_content(buffer.str(), "text/html");
+        res.set_content(load_file("other.html"), "text/html");
     });
     // test, unused.
     svr.Get("/hello", [](const httplib::Request&, httplib::Response& res) {
         cout << "hello" << endl;
         res.set_content("Hello, World!", "text/plain");
     });
+    svr.Get("/index", [](const httplib::Request&, httplib::Response& res) { // sets site to index html
+        res.set_content(load_file("index.html"), "text/html");
+    });
+    
+    
+    
 
 
 
@@ -100,6 +109,7 @@ int main() {
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
+
 
 
 
