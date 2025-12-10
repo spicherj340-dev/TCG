@@ -133,18 +133,20 @@
 </head>
 <body>
 
-    <div class="game-area" id="player1">
+    <div class="game-area" id="row1">
         <div class="player-box">
             <div class="player-name">Player 1 Name</div>
             <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
             <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-        <div class="player-box" id="player2">
+        
+        <div class="player-box" id="row2">
             <div class="player-name">Player 2 Name</div>
             <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
             <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-        <div class="player-box" id="player3">
+        
+        <div class="player-box" id="row3">
             <div class="player-name">Player 3 Name</div>
             <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
             <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
@@ -183,24 +185,30 @@ window.onload = function() {
     // Get the number of players, default to 2
     const n = parseInt(localStorage.getItem("players")) || 2; 
 
-    // Loop through the potential player boxes (1 to 3 in this example)
-    for(let i = 1; i <= 3; i++) {
-        let playerBox = document.getElementById("player" + i);
-        
-        // Safety check: ensure the element exists
-        if (playerBox) {
-            if (i <= n) {
-                // If the box index (i) is less than or equal to the player count (n), show it
-                playerBox.style.display = "grid"; 
-            } else {
-                // Otherwise, hide it
-                playerBox.style.display = "none";
-            }
+    // Player 1 Box is the first child of .game-area and is visible by default.
+
+    // Control the 2nd box (id="row2")
+    let row2 = document.getElementById("row2");
+    if (row2) {
+        // Show row2 if n >= 2
+        if (n >= 2) {
+            row2.style.display = "grid"; 
+        } else {
+             row2.style.display = "none";
         }
     }
 
+    // Control the 3rd box (id="row3")
+    let row3 = document.getElementById("row3");
+    if (row3) {
+        // Show row3 only if n >= 3
+        if (n >= 3) {
+            row3.style.display = "grid";
+        } else {
+            row3.style.display = "none";
+        }
+    }
 };
-</script>
 
 </script>
 
