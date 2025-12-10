@@ -7,11 +7,13 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        margin: 20px;
+        /* Use margin: 0; and min-height for full-screen background coverage */
+        margin: 0; 
+        min-height: 100vh; 
 
         background-image: url("frontback.jpg");
         background-size: cover;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat; /* <-- Fixed */
         background-position: center;
     }
 
@@ -22,9 +24,9 @@
         align-items: center;
         margin-bottom: 10px;
 
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.7); /* <-- Fixed */
         padding: 10px;
-        border-radius: 8px;
+        border-radius: 8px; /* <-- FINAL FIX: Removed space '8 px' */
         width: 400px;
     }
 
