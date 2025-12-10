@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <title>Game Stat Display</title>
     <style>
-
+        /*
+        ******************************************************
+        * CSS STYLES (All styles provided in your prompt are correct
+        * and consolidated here. No changes needed to the styles themselves.)
+        ******************************************************
+        */
         
         .game-area {
             display: flex;
@@ -18,11 +23,8 @@
         }
 
         .player-box {
-            
             display: grid;
             grid-template-columns: 1fr 1fr; 
-            
-
             padding: 15px;
             border: 2px solid #333;
             border-radius: 8px;
@@ -46,243 +48,149 @@
             padding: 0 5px;
         }
 
-        /*life and mana*/
         .stat-group label {
             display: block; 
             font-size: 0.9em;
             color: #555;
-            margin-bottom: 5px; /* More space above the value */
+            margin-bottom: 5px;
         }
         
-        /* NEW STYLE: For the non-editable display value */
         .stat-value {
             display: block;
-            font-size: 1.6em; /* Make the value prominent */
+            font-size: 1.6em;
             font-weight: bold;
-            color: #C00; /* Example color for Life/Mana */
+            color: #C00;
             background-color: #eee;
             padding: 5px;
             border-radius: 4px;
         }
 
+        /* ---------------------------------------------------- */
+        /* Control Bar & Center Image Styles */
+        /* ---------------------------------------------------- */
+        .control-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            margin: 40px auto;
+            gap: 50px;
+        }
+
+        .left-controls {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+            text-align: right;
+        }
+
+        .discard-btn { grid-column: 1; }
+        .mana-display { grid-column: 2; font-size: 1.2em; font-weight: bold; }
+        .draw-btn { grid-column: 1 / 3; padding: 8px; }
+
+        .right-controls {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .player-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            min-width: 100px;
+        }
+
+        .player-name { font-weight: bold; }
+        .player-life { font-size: 1.5em; color: red; }
+        .pass-btn { height: 100%; padding: 15px 20px; }
+
+        .center-image {
+            /* Now positioned by the Flex container, not absolutely */
+            position: static;
+            width: 150px;
+            height: 150px;
+        }
+        /* ---------------------------------------------------- */
+        /* Image Underneath & Gallery Styles */
+        /* ---------------------------------------------------- */
         .image-underneath {
-            /* 1. Set a width so margin: auto has a reference point */
             width: 250px; 
             height: auto; 
-            
-            /* 2. Treat the image like a block element */
             display: block; 
-            
-            /* 3. Automatic margins on left/right center the block */
-            margin: 30px auto; 
-            
-            /* Optional: Add some space above the image to separate it from the player boxes */
-            margin-top: 30px; 
+            margin: 30px auto 0; /* Adjusted margin for better flow */
         }
 
 
         .image-gallery {
-            /* 1. Layout: Make it a single, horizontal row */
             display: flex;
-            white-space: nowrap; /* Forces all children onto one line */
-
-            /* 2. Scrolling: Enable horizontal scrolling if content exceeds container width */
+            white-space: nowrap;
             overflow-x: scroll;
-            
-            /* 3. Appearance (Optional but recommended) */
-            width: 80%; /* Limits the container width */
-            margin: 40px auto; /* Centers the scrollable area below everything */
+            width: 80%;
+            margin: 20px auto 40px; /* Reduced gap between gallery and controls */
             padding: 10px 0;
             border: 2px solid #555;
             border-radius: 6px;
         }
 
-/* Style the images inside the gallery */
         .image-gallery img {
-            /* Ensures the images don't resize or shrink */
             flex-shrink: 0; 
-            
-            /* Set a consistent size for each image */
             width: 120px; 
             height: 160px;
-            
-            /* Add space between the images */
             margin-right: 15px; 
-        }
-
-
-        .control-bar {
-            display: flex;
-            justify-content: center; /* Centers the whole group in the screen */
-            align-items: center; /* Vertically aligns the content */
-            width: 90%;
-            margin: 40px auto; /* Gives space above and centers horizontally */
-            gap: 50px; /* Space between Left Controls, Image, and Right Controls */
-        }
-
-        .left-controls {
-            display: grid;
-            grid-template-columns: auto auto; /* Two columns */
-            gap: 10px; /* Space between rows and columns */
-            text-align: right;
-        }
-
-        .discard-btn {
-            grid-column: 1; /* Aligned to the left column */
-        }
-
-        .mana-display {
-            grid-column: 2; /* Aligned to the right column */
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .draw-btn {
-            /* Make the draw button span the full width of the block on the next row */
-            grid-column: 1 / 3; 
-            padding: 8px;
-        }
-
-        .right-controls {
-            display: grid;
-            grid-template-columns: 1fr auto; /* Player Info (1fr) | Pass Button (auto) */
-            align-items: center; /* Vertically center the button next to the info */
-            gap: 15px;
-}
-
-        .player-info {
-            /* Stacks Name and Life vertically (default block flow) */
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            min-width: 100px; /* Ensures name/life area has a minimum width */
-        }
-
-        .player-name {
-            font-weight: bold;
-        }
-
-        .player-life {
-            font-size: 1.5em;
-            color: red;
-        }
-
-        .pass-btn {
-            /* Pass button aligns to the right */
-            height: 100%; /* Makes the button tall */
-            padding: 15px 20px;
-        }
-
-        .center-image {
-        /* Remove the old absolute/fixed centering styles: */
-            position: static; /* or just remove the position property */
-            top: initial;
-            left: initial;
-            transform: none;
-            
-            /* Give it a size */
-            width: 150px;
-            height: 150px;
         }
     </style>
 </head>
 <body>
 
     <div class="game-area">
-        
         <div class="player-box">
             <div class="player-name">Player 1 Name</div>
-            
-            <div class="stat-group">
-                <label>Life</label>
-                <div class="stat-value">8000</div>
-            </div>
-            
-            <div class="stat-group">
-                <label>Mana</label>
-                <div class="stat-value">5</div>
-            </div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-
         <div class="player-box">
             <div class="player-name">Player 2 Name</div>
-            
-            <div class="stat-group">
-                <label>Life</label>
-                <div class="stat-value">8000</div>
-            </div>
-            
-            <div class="stat-group">
-                <label>Mana</label>
-                <div class="stat-value">5</div>
-            </div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-
         <div class="player-box">
             <div class="player-name">Player 3 Name</div>
-            
-            <div class="stat-group">
-                <label>Life</label>
-                <div class="stat-value">8000</div>
-            </div>
-            
-            <div class="stat-group">
-                <label>Mana</label>
-                <div class="stat-value">5</div>
-            </div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
         </div>
-        
-    </div>
-
-    <img src="placeholder.jpeg" class="image-underneath" alt="Game Asset">
-
-
-    <div class="image-gallery">
-    <img src="placeholder.jpeg" alt="Card 1">
-    <img src="placeholder.jpeg" alt="Card 2">
-    <img src="placeholder.jpeg" alt="Card 3">
-    <img src="placeholder.jpeg" alt="Card 4">
-    <img src="placeholder.jpeg" alt="Card 5">
-    <img src="placeholder.jpeg" alt="Card 6">
     </div>
 
     <div class="control-bar">
-    
-    <div class="left-controls">
-        <button class="discard-btn">Discard</button>
-        <div class="mana-display">Mana: 5</div>
-        <button class="draw-btn">Draw</button>
+        
+        <div class="left-controls">
+            <button class="discard-btn">Discard</button>
+            <div class="mana-display">Mana: 5</div>
+            <button class="draw-btn">Draw</button>
+        </div>
+
+        <img src="your-image-source.png" class="center-image" alt="Game Asset">
+        
+        <div class="right-controls">
+            <div class="player-info">
+                <span class="player-name">Player Name</span>
+                <span class="player-life">8000</span>
+            </div>
+            <button class="pass-btn">PASS</button>
+        </div>
     </div>
 
-    <img src="your-image-source.png" class="center-image" alt="Game Asset">
-    
-    <div class="right-controls">
-        <div class="player-info">
-            <span class="player-name">Player Name</span>
-            <span class="player-life">8000</span>
+    <div class="image-gallery">
+        <img src="placeholder.jpeg" alt="Card 1">
+        <img src="placeholder.jpeg" alt="Card 2">
+        <img src="placeholder.jpeg" alt="Card 3">
+        <img src="placeholder.jpeg" alt="Card 4">
+        <img src="placeholder.jpeg" alt="Card 5">
+        <img src="placeholder.jpeg" alt="Card 6">
         </div>
-        <button class="pass-btn">PASS</button>
-    </div>
     
-    </div><div class="control-bar">
-    
-    <div class="left-controls">
-        <button class="discard-btn">Discard</button>
-        <div class="mana-display">Mana: 5</div>
-        <button class="draw-btn">Draw</button>
-    </div>
+    <img src="placeholder.jpeg" class="image-underneath" alt="Game Asset">
 
-    <img src="your-image-source.png" class="center-image" alt="Game Asset">
-    
-    <div class="right-controls">
-        <div class="player-info">
-            <span class="player-name">Player Name</span>
-            <span class="player-life">8000</span>
-        </div>
-        <button class="pass-btn">PASS</button>
-    </div>
-    
-    
-</div>
 </body>
 </html>
