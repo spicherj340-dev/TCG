@@ -20,4 +20,4 @@ RUN g++ main.cpp -o app -std=c++17 -O2
 EXPOSE 8080
 
 # Run the compiled app
-CMD ["./app"]
+CMD ["./app", "--config", "server.conf""]
