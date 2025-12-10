@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Choose Players</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 100px;
+    background-image: url("image.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h1>Choose number of players</h1>
+<button onclick="choosePlayers(2)">2 Players</button>
+<button onclick="choosePlayers(3)">3 Players</button>
+<button onclick="choosePlayers(4)">4 Players</button>
+
+<script>
+function choosePlayers(n) {
+    localStorage.setItem("players", n); // store selection
+    window.location.href = "/index";      // go to game page
+}
+</script>
+</body>
+</html>
