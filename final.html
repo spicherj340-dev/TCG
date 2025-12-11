@@ -212,7 +212,8 @@
         }
     }
 
-    window.onload = refreshData;
+    window.onload = refreshData; // refresh immediately at /final
+    setInterval(refreshData, 5000); // refresh every 5 seconds
     </script>
 
 </body>
