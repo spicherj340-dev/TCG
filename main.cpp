@@ -48,7 +48,7 @@ int main() {
         std::ostringstream out;
         out << "{ \"players\": [";
         
-        for (int i = 0; i < players.size(); i++) {
+        for (int i = 0; i < players.size(); i++) { // will need to add current player deck and hand as well somehow
             out << "{"
                 << "\"name\":\"" << players[i]->getName() << "\","
                 << "\"life\":" << players[i]->getLife() << ","
