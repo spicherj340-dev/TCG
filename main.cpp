@@ -156,8 +156,9 @@ int main() {
         //tell the user names
         res.set_content(contname + players,  "text/plain");
         
-        this_thread::sleep_for(chrono::seconds(2));
-        gm->gameStart();
+        //for now, gamestart breaks the game
+        // this_thread::sleep_for(chrono::seconds(2));
+        // gm->gameStart();
     }
     catch (json::parse_error&) {
         res.status = 400;
