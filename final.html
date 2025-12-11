@@ -230,8 +230,9 @@
     setInterval(refreshData, 5000); // refresh every 5 seconds
     </script>
 
-    <!-- <script>
+    <script>
     // the buttons. probably will need to change based on how you get the responses from backend.
+    /*
     async function drawCard() {
         await fetch("/draw", { method: "POST" });
         //put logic here. Event object I believe; 
@@ -239,7 +240,7 @@
         //refresh at end
         refreshData();
     }
-
+    */
 
 
     async function passTurn() {
@@ -249,7 +250,7 @@
         //refresh
         refreshData();
     }
-
+    /*
 
     //for discard, you press discard, then it waits for you to press one of the cards in hand. then it discards.
     let discardMode = false;
@@ -276,7 +277,7 @@
         //refresh at end to view everything
         refreshData();
     }
-
+    */
     // attach button listeners
     window.onload = () => {
         refreshData();
@@ -287,12 +288,14 @@
         document.querySelector(".pass-btn")
             .addEventListener("click", passTurn);
 
-        document.querySelector(".discard-btn")
-            .addEventListener("click", enableDiscardMode);
-    }; -->
+        //document.querySelector(".discard-btn")
+           // .addEventListener("click", enableDiscardMode);
+    }; 
 
-    <!-- setInterval(refreshData, 5000);
-    </script> -->
+    setInterval(refreshData, 5000);
+        
+    </script> 
+
 
 </body>
 </html>

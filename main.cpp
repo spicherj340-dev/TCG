@@ -8,6 +8,8 @@
 //test comment   iojo
 #include "GameManager.h"
 
+
+
 using json = nlohmann::json;
 using namespace std;
 
@@ -173,8 +175,47 @@ int main() {
 }
 });
 
+    //draw button
+    svr.Post("/draw", [gm](const httplib::Request &req, httplib::Response &res)
+             {
+    User* curr = gm->getPlayers()[0]; // current player
+    Card* drawn = curr->draw();
 
+});
 
+    // Pass button
+    svr.Post("/pass", [gm](const httplib::Request &req, httplib::Response &res)
+             {
+    User* curr = gm->getPlayers()[0]; // current player
+    GameEvent ev;
+    ev._reqtype = "pass";
+    ev._player = curr->getName();
+    ev._payload = "";
+
+    gm->eventAdd(ev);
+
+});
+
+    // Discard button
+    svr.Post("/discard", [gm](const httplib::Request &req, httplib::Response &res)
+             {
+        User* curr = gm->getPlayers()[0]; // current player
+        json data = json::parse(req.body);
+        string cardName = data["card"];
+    
+        Card* toDiscard = nullptr;
+        for (Card* c : curr->getHand()->getAllCards()) {
+            if (c->getName() == cardName) {
+                toDiscard = c;
+                break;
+            }
+        }
+    
+        curr->getHand()->removeCard(toDiscard);
+        curr->getGraveyard()->addCard(toDiscard);
+    
+    });
+    
     cout << "Server running on port 8080..." << endl;
     svr.listen("0.0.0.0", 8080);
 }
