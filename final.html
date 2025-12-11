@@ -135,14 +135,14 @@
 
         <div class="player-box" id="row3">
             <div class="player-name">Player 3</div>
-            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
-            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">num</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">placeholdernum</div></div>
         </div>
 
         <div class="player-box" id="row4">
             <div class="player-name">Player 4</div>
-            <div class="stat-group"><label>Life</label><div class="stat-value">8000</div></div>
-            <div class="stat-group"><label>Mana</label><div class="stat-value">5</div></div>
+            <div class="stat-group"><label>Life</label><div class="stat-value">67</div></div>
+            <div class="stat-group"><label>Mana</label><div class="stat-value">somenum</div></div>
         </div>
     </div>
 
@@ -153,8 +153,12 @@
             <button class="draw-btn">Draw</button>
         </div>
 
-        <img src="placeholder.jpeg" class="currcard-played" alt="Game Asset">
+        <img src="placeholder.jpeg" id = "currentPlayed" class="currcard-played" alt="Game Asset">
+        <!-- once we get current played, make a request to make played card fileName replace placeholder. not implemented Cards.h yet -->
 
+
+
+        <!-- the issue making controls work -->
         <div class="right-controls">
             <div class="player-info">
                 <span class="player-name">Player 1 Name</span>
@@ -164,7 +168,7 @@
         </div>
     </div>
 
-    <div class="hand-cards"> <!-- placeholder for now. will dynamically add deck later, and make them buttons-->
+    <div class="hand-cards"> <!-- placeholder for now. will dynamically add deck later, and make them buttons once Ian changes the Card-->
         <img src="placeholder.jpeg" alt="Card 1">
         <img src="placeholder.jpeg" alt="Card 2">
         <img src="placeholder.jpeg" alt="Card 3">
@@ -172,6 +176,14 @@
         <img src="placeholder.jpeg" alt="Card 5">
         <img src="placeholder.jpeg" alt="Card 6">
     </div>
+
+    <!-- <div class="hand-cards" id = "hand">  backend will dynamically add from hands. Card object needs to be fixed
+    </div>  -->
+
+
+
+
+
 
     <!-- reset values every time a turn happens. backend should make first user in vector the currentplayer -->
     <script>
@@ -209,11 +221,77 @@
             document.querySelector(".right-controls .player-name").textContent = p1.name;
             document.querySelector(".right-controls .player-life").textContent = p1.life;
             document.querySelector(".mana-display").textContent = "Mana: " + p1.mana;
+
+
         }
     }
 
     window.onload = refreshData; // refresh immediately at /final
     setInterval(refreshData, 5000); // refresh every 5 seconds
+    </script>
+
+    <script>
+    // the buttons. probably will need to change based on how you get the responses from backend.
+    async function drawCard() {
+        await fetch("/draw", { method: "POST" });
+        //put logic here. Event object I believe; 
+
+        //refresh at end
+        refreshData();
+    }
+
+
+
+    async function passTurn() {
+        await fetch("/pass", { method: "POST" });
+        //pass event and logic
+
+        //refresh
+        refreshData();
+    }
+
+
+    //for discard, you press discard, then it waits for you to press one of the cards in hand. then it discards.
+    let discardMode = false;
+
+    //first we need to enable it so only then we await the click
+    function enableDiscardMode() {
+        discardMode = true;
+        alert("Click a card to discard.");
+    }
+
+    async function discardCard(cardId) {
+        if (!discardMode) return;
+
+        //if we choose discard, then fetch disard.
+        //scuffed logic because card object not fully implemented.
+        //we will make cards have button listeners to fetch the object based on their name,
+        // which could be their id.
+        discardMode = false;
+        await fetch("/discard", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ card: cardId })
+        });
+        //refresh at end to view everything
+        refreshData();
+    }
+
+    // attach button listeners
+    window.onload = () => {
+        refreshData();
+
+        document.querySelector(".draw-btn")
+            .addEventListener("click", drawCard);
+
+        document.querySelector(".pass-btn")
+            .addEventListener("click", passTurn);
+
+        document.querySelector(".discard-btn")
+            .addEventListener("click", enableDiscardMode);
+    };
+
+    setInterval(refreshData, 5000);
     </script>
 
 </body>

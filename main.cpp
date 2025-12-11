@@ -42,10 +42,15 @@ int main() {
     svr.Get("/refresh", [gm](const httplib::Request&, httplib::Response& res) {
 
         auto &players = gm->getPlayers();
+        User* p = players[0]; //current player always stored first index
 
+        // auto curHand = p->getHand->getVisibleCards(p); // I am having trouble getting the hand. 
+        // Maybe Ian knows how to get a users hand using gamemanager.
 
         //covert to json
         std::ostringstream out;
+
+        out << "{";
         out << "{ \"players\": [";
         
         for (int i = 0; i < players.size(); i++) { // will need to add current player deck and hand as well somehow
@@ -59,6 +64,26 @@ int main() {
         }
 
         out << "] }";
+
+        
+
+        //backend has no getImage yet, nor a good way to get hand (i think, i just couldnt get it to work)
+        //so card objects can not yet be made properly
+        
+        // out << "\"hand\":[";
+
+        // for (int i = -; i< visibleHand.size(); i++) {
+        //     Card* c = visibleHand[i];
+
+        //     out << "{"
+        //         << "\"name\":\"" << c->getName() << "\","
+        //         << "\"image\":\"" << c->getImage() << "\""
+        //         << "}";
+        //     if (i + 1 < visibleHand.size()) out << ",";
+        //     }
+        //     out << "]";
+
+            out << "}";
 
         res.set_content(out.str(), "application/json");
 });
