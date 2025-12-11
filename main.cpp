@@ -155,8 +155,8 @@ int main() {
         
         //tell the user names
         res.set_content(contname + players,  "text/plain");
-        
-        //for now, gamestart breaks the game
+
+        //for now, gamestart breaks the game. maybe since we cant implement draw yet. or we cooked
         // this_thread::sleep_for(chrono::seconds(2));
         // gm->gameStart();
     }
