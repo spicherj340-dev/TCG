@@ -128,6 +128,8 @@ int main() {
         
         //tell the user names
         res.set_content(contname + players,  "text/plain");
+
+        gm->gameStart();
     }
     catch (json::parse_error&) {
         res.status = 400;
