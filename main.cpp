@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 #include "json.hpp"
+#include <chrono>
+#include <thread>
 //test comment   iojo
 #include "GameManager.h"
 
@@ -69,7 +71,7 @@ int main() {
 
         //backend has no getImage yet, nor a good way to get hand (i think, i just couldnt get it to work)
         //so card objects can not yet be made properly
-        
+
         // out << "\"hand\":[";
 
         // for (int i = -; i< visibleHand.size(); i++) {
@@ -153,7 +155,8 @@ int main() {
         
         //tell the user names
         res.set_content(contname + players,  "text/plain");
-
+        
+        this_thread::sleep_for(chrono::seconds(2));
         gm->gameStart();
     }
     catch (json::parse_error&) {
